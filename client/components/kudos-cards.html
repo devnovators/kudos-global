@@ -63,10 +63,12 @@
                       <paper-tooltip for="id_{{card.id}}_{{kudo.id}}" position="top" style="max-width:100px;">{{kudo.title}}<br>{{kudo.description}}</paper-tooltip>
                     </template>
                   </template>
-                  <div class="valoracion-star">
-                    <star-rating stars="{{numStars}}" id="star_{{card.id}}" on-click="_putStars"></star-rating>
-                    {{getRatingCardUser(card.block,card.id)}}
-                  </div>
+                  <template is="dom-if" if="{{withStars}}">
+                    <div class="valoracion-star">
+                      <star-rating stars="{{numStars}}" id="star_{{card.id}}" on-click="_putStars"></star-rating>
+                      {{getRatingCardUser(card.block,card.id)}}
+                    </div>
+                  </template>
                 </div>
               </div>
             </paper-card>
@@ -100,6 +102,7 @@
           kudos           : {type:Array, notify:true},
           withKudos       : {type:Boolean, value:false, notify:true},
           withFeedback    : {type:Boolean, value:false, notify:true},
+          withStars       : {type:Boolean, value:false, notify:true},
           numStars        : {type:Number, notify:true},
         },
         unCollapse: function(e) {

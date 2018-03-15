@@ -160,6 +160,10 @@
                                     parent.$.cards.withFeedback=true;
                                     parent.$.stats.withFeedback=true;
                                 }
+                                if (snapshot.val().parameters.withStars=='true'){
+                                    parent.$.cards.withStars=true;
+                                    parent.$.stats.withStars=true;
+                                }
                                 parent.$.cards.numStars=snapshot.val().parameters.numStars;
                                 parent.$.cards.getKudos();
                                 parent.$.cards.getBlocks();
