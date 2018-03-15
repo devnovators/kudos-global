@@ -13,7 +13,7 @@
     <template id="arrBlocks" is="dom-repeat" items="{{blocks}}" as="block">
       <paper-card style="width:100%">
         <div>
-          <div class="rate-header titleProject" style$="height:40px;background:{{block.color}}" on-click="unCollapse" data-args$="[[block.id]]">
+          <div class="rate-header titleProject" style$="height:70px;background:{{block.color}}" on-click="unCollapse" data-args$="[[block.id]]">
             <div style="display: inline-block;"><img style="width:80%" src="[[block.img]]"></div>
             <div style="display: inline-block;top: 40%;transform: translateY(-60%);">
               &gt; {{block.title}}
