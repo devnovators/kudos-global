@@ -123,8 +123,10 @@
                 firebase.initializeApp({
                     apiKey: "AIzaSyBiBdm3MheV4sN7lfk0WLoVDtXXxHxbbvk",
                     authDomain: "devnovators.firebaseapp.com",
-                    databaseURL: "https://devnovators.firebaseio.com",
+                    databaseURL: "https://devnovators-global.firebaseio.com",
+                    projectId: "devnovators",
                     storageBucket: "devnovators.appspot.com",
+                    messagingSenderId: "629991699945"
                 });
                 var parent = this;
                 firebase.auth().onAuthStateChanged(function(account) {
