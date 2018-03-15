@@ -13,7 +13,7 @@
     <template id="arrBlocks" is="dom-repeat" items="{{blocks}}" as="block">
       <paper-card style="width:100%">
         <div>
-          <div class="rate-header titleProject" style$="height:40px;background:{{block.color}}" on-click="unCollapse" data-args$="[[block.id]]"><img src="[[block.img]]">&gt; {{block.title}}
+          <div class="rate-header titleProject" style$="height:40px;background:{{block.color}}" on-click="unCollapse" data-args$="[[block.id]]"><img style="width:30%" src="[[block.img]]">&gt; {{block.title}}
           <!--<paper-icon-button icon="icons:arrow-drop-down" style="float:right;"></paper-icon-button></div>-->
         </div>
         <iron-collapse id="clp_[[block.id]]" style="width:100%;">
