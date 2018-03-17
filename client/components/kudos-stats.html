@@ -65,9 +65,11 @@
         </div>
         <iron-collapse id="cl_{{card.id}}">
           <div class="content">
-            <div id="st_{{card.id}}">
-              <div><div class="userSection" style="vertical-align:top;"><b>Valoración</b> </div><div class="userSection2"> {{card.totalRating}} stars / {{card.usersRating}} users = {{card.averageRating}} </div></div>
-            </div>
+            <template is="dom-if" if="{{withStars}}">
+              <div id="st_{{card.id}}">
+                <div><div class="userSection" style="vertical-align:top;"><b>Valoración</b> </div><div class="userSection2"> {{card.totalRating}} stars / {{card.usersRating}} users = {{card.averageRating}} </div></div>
+              </div>
+            </template>
             <template is="dom-if" if="{{withKudos}}">
               <div><span><b>Kudos</b></span></div>
               <template is="dom-repeat" items="{{cards.statKudos}}" as="statKudo">
