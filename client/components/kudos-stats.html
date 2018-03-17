@@ -42,7 +42,9 @@
                 <template is="dom-if" if="{{withKudos}}">
                   <div class="userSection">Kudos: [[user.numKudos]]</div>
                 </template>
-                <div class="userSection">Stars: [[user.numStars]]</div>
+                <template is="dom-if" if="{{withStars}}">
+                  <div class="userSection">Stars: [[user.numStars]]</div>
+                </template>
               </address>
             </div>
           </div>
