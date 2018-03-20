@@ -7,11 +7,11 @@
     <!-- Bienvenida -->
     <div style="display:table">
       <img id="imgProfile" class="avatar" src="{{userPicture}}">
-      <div style="display:table-cell;vertical-align:middle"> ¡Bienvenid@ {{userFirstName}}!</div>
+      <div style="display:table-cell;vertical-align:middle"> ¡Welcome {{userFirstName}}!</div>
     </div>
     <!-- Lista de Bloques -->
     <template id="arrBlocks" is="dom-repeat" items="{{blocks}}" as="block">
-      <paper-card style="width:100%">
+      <paper-card style="width:95%">
         <div>
           <div class="rate-header titleProject" style$="height:70px;background:{{block.color}}" on-click="unCollapse" data-args$="[[block.id]]">
             <div style="display: inline-block;"><img style="width:80%" src="[[block.img]]"></div>
