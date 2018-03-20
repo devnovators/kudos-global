@@ -14,8 +14,8 @@
       <paper-card style="width:95%">
         <div>
           <div class="rate-header titleProject" style$="height:70px;background:{{block.color}}" on-click="unCollapse" data-args$="[[block.id]]">
-            <div style="display: inline-block;"><img style="width:80%" src="[[block.img]]"></div>
-            <div style="display: inline-block;top: 40%;transform: translateY(-60%);">&gt; {{block.title}}</div>
+            <div class="display_inline"><img style="width:80%" src="[[block.img]]"></div>
+            <div class="display_inline" style="top: 40%;transform: translateY(-60%);">&gt; {{block.title}}</div>
           <!--<paper-icon-button icon="icons:arrow-drop-down" style="float:right;"></paper-icon-button></div>-->
         </div>
         <iron-collapse id="clp_[[block.id]]" style="width:100%;">

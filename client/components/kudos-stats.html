@@ -219,10 +219,10 @@
           self.push('users',_user);
         }
         self.numUsers=numUsers;
-        // self.users.sort(function(a,b) {
-        //   return (a.numFeedback > b.numFeedback) ? -1 : ((b.numFeedback > a.numFeedback) ? 1 : 0);} );
         self.users.sort(function(a,b) {
-          return (a.numStars > b.numStars) ? -1 : ((b.numStars > a.numStars) ? 1 : 0);} );
+        return (a.numFeedback > b.numFeedback) ? -1 : ((b.numFeedback > a.numFeedback) ? 1 : 0);} );
+        //self.users.sort(function(a,b) {
+        //  return (a.numStars > b.numStars) ? -1 : ((b.numStars > a.numStars) ? 1 : 0);} );
       });
 
     },
