@@ -42,7 +42,8 @@
                       <div><a href="[[card.linkValue]]" target="_blank">[[card.linkLabel]]</a></div>
                       <!--elvis-->
                       <template is="dom-if" if="{{withFeedback}}">
-                        <div><span><b>Feedback</b></span>
+                        <div>
+                          <paper-button raised onclick="scrolling.open()">scrolling dialog</paper-button>
                           <div id="fb_{{card.id}}">
                             <template is="dom-repeat" items="{{_getComments(card.comments)}}" as="comment">
                             {{comment}}
@@ -88,13 +89,23 @@
     </template>
     <paper-dialog id="feedback" >
       <h2 id="titleFeedback">Quick feedback for:</h2>
-      <paper-textarea id="txtFeedback" label="Escribe tu feedback..."></paper-textarea>
+      <paper-textarea id="txtFeedback" label="Write your feedback..."></paper-textarea>
       <div class="buttons">
-        <paper-button id="btnFeedback" on-click="sendFeedback" autofocus>Enviar</paper-button>
-        <paper-button dialog-dismiss>Cancelar</paper-button>
+        <paper-button id="btnFeedback" on-click="sendFeedback" autofocus>Sendr</paper-button>
+        <paper-button dialog-dismiss>Cancel</paper-button>
       </div>
     </paper-dialog>
     <paper-toast id="toastAlert" text="Gracias por tu feedback"></paper-toast>
+    
+    <paper-dialog id="scrolling">
+      <h2>Comments</h2>
+      <paper-dialog-scrollable>
+        <span id="scrollingComments"></span>
+      </paper-dialog-scrollable>
+      <div class="buttons">
+        <paper-button dialog-confirm autofocus>OK</paper-button>
+      </div>
+    </paper-dialog>
   </template>
   <script>
       Polymer({
@@ -151,7 +162,7 @@
             var newCard = { id:card, title:block.cards[card].title, description:block.cards[card].description,
               leader:block.cards[card].leader, color:block.cards[card].color, withChat:block.cards[card].withChat, 
               linkLabel:block.cards[card].linkLabel, linkValue:block.cards[card].linkValue, kpi:block.cards[card].kpi, 
-              sdacode: block.cards[card].sdacode, mvp: block.cards[card].mvp};
+              sdacode: block.cards[card].sdacode, mvp: block.cards[card].mvp, comments: block.cards[card].comments};
             //parameters
             newCard.objetivo        =block.cards[card].parameters.objetivo;
             newCard.detalles        =block.cards[card].parameters.detalles;
