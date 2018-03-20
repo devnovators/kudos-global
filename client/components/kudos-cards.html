@@ -40,6 +40,16 @@
                         <div><b>MVP:</b> {{card.mvp}}</div>
                       </template>
                       <div><a href="[[card.linkValue]]" target="_blank">[[card.linkLabel]]</a></div>
+                      <!--elvis-->
+                      <template is="dom-if" if="{{withFeedback}}">
+                        <div><span><b>Feedback</b></span>
+                          <div id="fb_{{card.id}}">
+                            <template is="dom-repeat" items="{{_getComments(card.comments)}}" as="comment">
+                            {{comment}}
+                            </template>
+                          </div>
+                        </div>
+                      </template>
                     </div>
                     <div class="div_feedback">
                       <paper-button class="rate-icon bot" id="{{card.id}}" data='{{card}}' on-click="openBot" style$="display:[[card.withChat]]">
@@ -249,6 +259,15 @@
             ref.update(updates);
           }else{
             firebase.database().ref(this.activeEvent +'/users').child(this.userEmail).child("/feedback/"+idBlock).child(idCard).child('rating').remove();
+          }
+        },
+        _getComments:function(comments){
+          if (comments!=undefined){
+            this.arrComments=[];
+            for (var comment in comments) {
+              this.push("arrComments",comments[comment].message);
+            }
+            return this.arrComments;
           }
         }
       });
