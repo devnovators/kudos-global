@@ -43,7 +43,7 @@
                       <!--elvis-->
                       <template is="dom-if" if="{{withFeedback}}">
                         <div>
-                          <paper-button raised on-click="{{_getComments(card.comments,card.title)}}">View comments</paper-button>
+                          <paper-button on-click="_getComments" data="{{card.comments}}">View comments</paper-button>
                         </div>
                       </template>
                     </div>
@@ -267,7 +267,9 @@
             firebase.database().ref(this.activeEvent +'/users').child(this.userEmail).child("/feedback/"+idBlock).child(idCard).child('rating').remove();
           }
         },
-        _getComments:function(comments,title){
+        _getComments:function(e){
+          var btnComments = Polymer.dom(e).localTarget;
+          var comments = btnComments.data;
           var _listado="";
           if (comments!=undefined){
             this.arrComments=[];
