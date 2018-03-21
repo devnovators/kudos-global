@@ -43,8 +43,7 @@
                       <!--elvis-->
                       <template is="dom-if" if="{{withFeedback}}">
                         <div>
-                          <paper-button raised onclick="{{_getComments(card.comments,card.title)}}">View comments</paper-button>
-                          
+                          <paper-button raised on-click="{{_getComments(card.comments,card.title)}}">View comments</paper-button>
                         </div>
                       </template>
                     </div>
