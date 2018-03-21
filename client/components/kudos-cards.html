@@ -43,12 +43,8 @@
                       <!--elvis-->
                       <template is="dom-if" if="{{withFeedback}}">
                         <div>
-                          <paper-button raised onclick="scrolling.open()">scrolling dialog</paper-button>
-                          <div id="fb_{{card.id}}">
-                            <template is="dom-repeat" items="{{_getComments(card.comments)}}" as="comment">
-                            {{comment}}
-                            </template>
-                          </div>
+                          <paper-button raised onclick="{{_getComments(card.comments,card.title)}}">View comments</paper-button>
+                          
                         </div>
                       </template>
                     </div>
@@ -95,12 +91,12 @@
         <paper-button dialog-dismiss>Cancel</paper-button>
       </div>
     </paper-dialog>
-    <paper-toast id="toastAlert" text="Gracias por tu feedback"></paper-toast>
+    <paper-toast id="toastAlert" text="Thanks for your feedback"></paper-toast>
     
-    <paper-dialog id="scrolling">
-      <h2>Comments</h2>
+    <paper-dialog id="commentDialog">
+      <h2 id="commentDialogTitle">Comments</h2>
       <paper-dialog-scrollable>
-        <span id="scrollingComments"></span>
+        <div id="comments"></div>
       </paper-dialog-scrollable>
       <div class="buttons">
         <paper-button dialog-confirm autofocus>OK</paper-button>
@@ -272,14 +268,22 @@
             firebase.database().ref(this.activeEvent +'/users').child(this.userEmail).child("/feedback/"+idBlock).child(idCard).child('rating').remove();
           }
         },
-        _getComments:function(comments){
+        _getComments:function(comments,title){
+          var _listado="";
           if (comments!=undefined){
             this.arrComments=[];
             for (var comment in comments) {
+              _listado=_listado + comments[comment].message + "<br>" ;
               this.push("arrComments",comments[comment].message);
             }
-            return this.arrComments;
+          }else{
+            _listado="There aren't comments..."
           }
+          //commentDialog
+          //
+          this.$.commentDialogTitle.innerHTML="Comments about " + title;
+          this.$.comments.innerHTML=_listado;
+          this.$.commentDialog.open();
         }
       });
     </script>
