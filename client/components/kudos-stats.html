@@ -165,7 +165,15 @@
             card.totalRating =0;
             card.usersRating =0;
             
-            var vote = block.cards[idCard].voters['approve'];
+            var vote = block.cards[idCard]['voters']['approve'];
+            // for (var prop in vote) {
+            //   if (prop == 'comments') {
+            //     for (var commentProps in users[user][project][prop]) {
+                  
+            //     }
+            //   }
+            // }
+            
             var contador=0;
             for (var prop in vote) {
               contador++;
