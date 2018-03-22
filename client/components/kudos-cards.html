@@ -43,7 +43,7 @@
                       <!--elvis-->
                       <template is="dom-if" if="{{withFeedback}}">
                         <div>
-                          <paper-button on-click="_getComments" data="{{card.comments}}">View comments</paper-button>
+                          <paper-button on-click="_getComments" data='{{card}}'>View comments</paper-button>
                         </div>
                       </template>
                     </div>
@@ -97,7 +97,10 @@
     <paper-dialog id="commentDialog">
       <h2 id="commentDialogTitle">Comments</h2>
       <paper-dialog-scrollable>
-        <div id="comments"></div>
+        <ul>
+          <div id="comments" style="text-align: left;"></div>  
+        </ul>
+        
       </paper-dialog-scrollable>
       <div class="buttons">
         <paper-button dialog-confirm autofocus>OK</paper-button>
@@ -159,7 +162,7 @@
             var newCard = { id:card, title:block.cards[card].title, description:block.cards[card].description,
               leader:block.cards[card].leader, color:block.cards[card].color, withChat:block.cards[card].withChat, 
               linkLabel:block.cards[card].linkLabel, linkValue:block.cards[card].linkValue, kpi:block.cards[card].kpi, 
-              sdacode: block.cards[card].sdacode, mvp: block.cards[card].mvp, comments: block.cards[card].comments};
+              sdacode: block.cards[card].sdacode, mvp: block.cards[card].mvp};
             //parameters
             newCard.objetivo        =block.cards[card].parameters.objetivo;
             newCard.detalles        =block.cards[card].parameters.detalles;
@@ -271,21 +274,19 @@
         },
         _getComments:function(e){
           var btnComments = Polymer.dom(e).localTarget;
-          var comments = btnComments.data;
+          var card = btnComments.data;
+          var self=this;
           var _listado="";
-          if (comments!=undefined){
-            this.arrComments=[];
-            for (var comment in comments) {
-              _listado=_listado + comments[comment].message + "<br>" ;
-              this.push("arrComments",comments[comment].message);
-            }
-          }else{
-            _listado="There aren't comments..."
-          }
-          //commentDialog
-          //
-          this.$.commentDialogTitle.innerHTML="Comments: ";
-          this.$.comments.innerHTML=_listado;
+          
+          var ref = firebase.database().ref(this.activeEvent + "/blocks/"+  card.block +"/cards/" + card.id + "/comments");
+          var self = this;
+          ref.once("value").then(function(snapshot) {
+            self.$.comments.value=""
+            snapshot.forEach(function(child) {
+              var block = child.val();
+              self.$.comments.value="<li>" + self.$.comments.value + "</li>";
+            });
+          });
           this.$.commentDialog.open();
         }
       });
