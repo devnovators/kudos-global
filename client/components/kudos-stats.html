@@ -37,9 +37,6 @@
               <div class="primary">[[user.name]]</div>
               <address>
                 <div class="userSection">Feedbacks: [[user.numFeedback]]</div>
-                <template is="dom-if" if="{{withKudos}}">
-                  <div class="userSection">Kudos: [[user.numKudos]]</div>
-                </template>
                 <template is="dom-if" if="{{withStars}}">
                   <div class="userSection">Stars: [[user.numStars]]</div>
                 </template>

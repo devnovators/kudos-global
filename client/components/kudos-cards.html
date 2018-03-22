@@ -40,12 +40,6 @@
                         <div><b>MVP:</b> {{card.mvp}}</div>
                       </template>
                       <div><a href="[[card.linkValue]]" target="_blank">[[card.linkLabel]]</a></div>
-                      <!--elvis-->
-                      <template is="dom-if" if="{{withFeedback}}">
-                        <div>
-                          <paper-button on-click="_getComments" data='{{card}}'>View comments</paper-button>
-                        </div>
-                      </template>
                     </div>
                     <div class="div_feedback">
                       <paper-button class="rate-icon bot" id="{{card.id}}" data='{{card}}' on-click="openBot" style$="display:[[card.withChat]]">
@@ -249,10 +243,14 @@
             voto = -1;
           }
           var refControl = firebase.database().ref(this.activeEvent +'/users').child(this.userEmail+"/kudos");
+          var refCard=firebase.database().ref(this.activeEvent +'/blocks/cards/'+  idBlock + '/cards/' + idCard +'/voters');
           if(voto > 0) {
             var updates = {};
+            var updatesVotersbyKudo ={};
             updates["/" + idBlock + "/" + idCard + "/" + idKudo] = true;
+            updatesVotersbyKudo["/" + idKudo + "/" + this.userEmail]=true;
             refControl.update(updates);
+            refCard.update(updatesVotersbyKudo);
 
             var idIniCard="000";
             for (var index = 1; index <= 12; index++) {
@@ -262,12 +260,12 @@
                 if (_idTmpCard!=idCard){
                   this.$$('#id_' + _idTmpCard + '_' +idKudo ).active=false;
                   firebase.database().ref(this.activeEvent +'/users').child(this.userEmail).child("/kudos/"+idBlock).child(_idTmpCard).child(idKudo).remove();
+                  firebase.database().ref(this.activeEvent +'/users').child(this.activeEvent +'/blocks/cards/'+  idBlock + '/cards/' + idCard +'/voters/' + idKudo + '/'+ this.userEmail).remove();
                 }
             }
-            
-            //self.$$('#id_' +idBlock).active=false;
           } else {
             firebase.database().ref(this.activeEvent +'/users').child(this.userEmail).child("/kudos/"+idBlock).child(idCard).child(idKudo).remove();
+            firebase.database().ref(this.activeEvent +'/users').child(this.activeEvent +'/blocks/cards/'+  idBlock + '/cards/' + idCard +'/voters/' + idKudo + '/'+ this.userEmail).remove();
           }
         },
         _putStars:function(e) {
