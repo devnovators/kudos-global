@@ -281,8 +281,9 @@
           var ref = firebase.database().ref(this.activeEvent + "/blocks/"+  card.block +"/cards/" + card.id + "/comments");
           var self = this;
           ref.once("value").then(function(snapshot) {
-            self.$.comments.value=""
+            self.$.comments.value="";
             snapshot.forEach(function(child) {
+              console.info(child.key() + ": " + child.val());
               var comment = child.val();
               self.$.comments.value=self.$.comments.value + "<li>" + comment + "</li>";
             });
