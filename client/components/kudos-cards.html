@@ -260,7 +260,7 @@
                 if (_idTmpCard!=idCard){
                   this.$$('#id_' + _idTmpCard + '_' +idKudo ).active=false;
                   firebase.database().ref(this.activeEvent +'/users').child(this.userEmail).child("/kudos/"+idBlock).child(_idTmpCard).child(idKudo).remove();
-                  firebase.database().ref(this.activeEvent + '/blocks/' + idBlock + '/cards/'+ idCard +'/voters/' + idKudo + '/'+ this.userEmail).remove();
+                  firebase.database().ref(this.activeEvent + '/blocks/' + idBlock + '/cards/'+ _idTmpCard +'/voters/' + idKudo + '/'+ this.userEmail).remove();
                 }
             }
           } else {
