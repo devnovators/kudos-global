@@ -283,8 +283,8 @@
           ref.once("value").then(function(snapshot) {
             self.$.comments.value=""
             snapshot.forEach(function(child) {
-              var block = child.val();
-              self.$.comments.value="<li>" + self.$.comments.value + "</li>";
+              var comment = child.val();
+              self.$.comments.value=self.$.comments.value + "<li>" + comment + "</li>";
             });
           });
           this.$.commentDialog.open();
