@@ -249,13 +249,13 @@
           if (!idBtnKudo.active){ //botón inactivo
             voto = -1;
           }
-          var refControl = firebase.database().ref(this.activeEvent +'/users').child(this.userEmail+"/feedback");
+          var refControl = firebase.database().ref(this.activeEvent +'/users').child(this.userEmail+"/kudos");
           if(voto > 0) {
             var updates = {};
-            updates["/" + idBlock + "/" + idCard + "/kudos/" + idKudo] = true;
+            updates["/" + idBlock + "/" + idCard + "/" + idKudo] = true;
             refControl.update(updates);
           } else {
-            firebase.database().ref(this.activeEvent +'/users').child(this.userEmail).child("/feedback/"+idBlock).child(idCard).child('kudos').child(idKudo).remove();
+            firebase.database().ref(this.activeEvent +'/users').child(this.userEmail).child("/kudos/"+idBlock).child(idCard).child(idKudo).remove();
           }
         },
         _putStars:function(e) {
@@ -285,12 +285,13 @@
           ref.once("value").then(function(snapshot) {
             self.$.comments.value="";
             snapshot.forEach(function(child) {
-              console.info(child.key + ": " + child.val());
+              console.info(child.key);
+              console.info(child.val());
               var comment = child.val();
               self.$.comments.value=self.$.comments.value + "<li>" + comment + "</li>";
             });
           });
-          this.$.commentDialog.open();
+          self.$.commentDialog.open();
         }
       });
     </script>
