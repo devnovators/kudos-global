@@ -116,7 +116,7 @@
     properties: {
       activeEvent   : { type: String, notify:true },
       cards         : { type: Array, notify:true },
-      tmpCards         : { type: Array, notify:true },
+      tmpCards      : { type: Array, notify:true },
       users         : { type: Array, notify:true },
       listUsers     : { type: Object, notify:true },
       numUsers      : { type: String, notify:true },
@@ -134,6 +134,7 @@
       var ref = firebase.database().ref(this.activeEvent + "/blocks");
       var self = this;
       self.cards = [];
+      self.tmpCards = [];
       ref.once('value',function(snapshot) {
         snapshot.forEach(function(child) {
           var block = child.val();
@@ -156,6 +157,7 @@
               }
             }
             self.push('tmpCards', card);
+            self.push('cards', card);
           }
           if(child.val=='PGM001'){
             self.sortedCards1 = self.tmpCards;
