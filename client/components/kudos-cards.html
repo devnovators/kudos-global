@@ -253,8 +253,13 @@
             var updates = {};
             updates["/" + idBlock + "/" + idCard + "/" + idKudo] = true;
             refControl.update(updates);
+
+            for (index = 0; index < this.blocks[idBlock].length; ++index) {
+                console.log(this.blocks[idBlock][index]);
+            }
+
             this.blocks[idBlock].forEach(function(entry) {
-                self.$$('#id_' +idBlock + '_' +  kudo.id).active=false;
+                this.$$('#id_' +idBlock + '_' +  kudo.id).active=false;
             });
             //self.$$('#id_' +idBlock).active=false;
           } else {
