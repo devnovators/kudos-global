@@ -257,10 +257,10 @@
             var idIniCard="000";
             for (var index = 1; index <= 12; index++) {
                 var _idTmp=idIniCard+index;
-                var _idTmpCard='FT' + _idTmp.slice(_idTmp.length-3, _idTmp.length)
+                var _idTmpCard=idBlock+'FT' + _idTmp.slice(_idTmp.length-3, _idTmp.length)
                 console.info(_idTmpCard);
                 if (_idTmpCard!=idCard){
-                  this.$$('#id_' +idBlock + _idTmpCard + '_' +idKudo ).active=false;
+                  this.$$('#id_' + _idTmpCard + '_' +idKudo ).active=false;
                   firebase.database().ref(this.activeEvent +'/users').child(this.userEmail).child("/kudos/"+idBlock).child(_idTmpCard).child(idKudo).remove();
                 }
             }
