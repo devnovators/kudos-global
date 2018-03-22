@@ -256,7 +256,6 @@
             for (var index = 1; index <= 12; index++) {
                 var _idTmp=idIniCard+index;
                 var _idTmpCard=idBlock+'FT' + _idTmp.slice(_idTmp.length-3, _idTmp.length)
-                console.info(_idTmpCard);
                 if (_idTmpCard!=idCard){
                   this.$$('#id_' + _idTmpCard + '_' +idKudo ).active=false;
                   firebase.database().ref(this.activeEvent +'/users').child(this.userEmail).child("/kudos/"+idBlock).child(_idTmpCard).child(idKudo).remove();
@@ -290,13 +289,10 @@
           
           var ref = firebase.database().ref(this.activeEvent + "/blocks/"+  card.block +"/cards/" + card.id + "/comments");
           var self = this;
-          console.info(self.activeEvent + "/blocks/" +  card.block + "/cards/" + card.id + "/comments");
           
           ref.once("value").then(function(snapshot) {
             self.$.comments.value="";
             snapshot.forEach(function(child) {
-              console.info(child.key);
-              console.info(child.val());
               var comment = child.val();
               self.$.comments.value=self.$.comments.value + "<li>" + comment + "</li>";
             });
