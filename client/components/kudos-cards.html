@@ -220,7 +220,7 @@
         },    
         getKudosUser:function(idBlock,idCard,idKudo){
           self=this;
-          var ref = firebase.database().ref(this.activeEvent + "/users/" + this.userEmail + "/feedback/"+ idBlock +"/" + idCard + "/kudos/" + idKudo);
+          var ref = firebase.database().ref(this.activeEvent + "/users/" + this.userEmail + "/kudos/"+ idBlock +"/" + idCard + "/" + idKudo);
           ref.once('value').then(function(snapshot) {
             if(snapshot.val()!=null){
                 self.$$('#id_' +idCard +'_' +idKudo).active=snapshot.val();
