@@ -254,16 +254,14 @@
             updates["/" + idBlock + "/" + idCard + "/" + idKudo] = true;
             refControl.update(updates);
 
-            this.blocks[idBlock].cards.forEach(function(entry) {
-                this.$$('#id_' +idBlock + '_' +  kudo.id).active=false;
-            });
-            
             var idIniCard="000";
-            for (var index = 1; index < 12; index++) {
+            for (var index = 1; index <= 12; index++) {
                 var _idTmp=idIniCard+index;
                 var _idTmpCard=str.slice(_idTmp.length-3, _idTmp.length)
                 console.info(_idTmpCard);
-                this.$$('#id_' +idBlock + '_' + _idTmpCard + '_' + kudo.id).active=false;
+                if (_idTmpCard!=idCard){
+                  this.$$('#id_' +idBlock + '_' + _idTmpCard + '_' + kudo.id).active=false;
+                }
             }
             
             //self.$$('#id_' +idBlock).active=false;
