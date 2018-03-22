@@ -251,12 +251,12 @@
             updatesVotersbyKudo["/" + idKudo + "/" + this.userEmail]=true;
             refControl.update(updates);
             refCard.update(updatesVotersbyKudo);
-
+            
             var idIniCard='000';
-            for (var index = 1; index <= 12; index++) {
+            for (var index = 0; index <= 12; ++index) {
                 var _idTmp=idIniCard+index;
                 var _idTmpCard=idBlock+'FT' + _idTmp.slice(_idTmp.length-3, _idTmp.length)
-                if (_idTmpCard!=idCard){
+                if (_idTmpCard!=idCard && this.$$('#id_' + _idTmpCard + '_' +idKudo )){
                   this.$$('#id_' + _idTmpCard + '_' +idKudo ).active=false;
                   firebase.database().ref(this.activeEvent +'/users').child(this.userEmail).child("/kudos/"+idBlock).child(_idTmpCard).child(idKudo).remove();
                   firebase.database().ref(this.activeEvent + '/blocks/' + idBlock + '/cards/'+ _idTmpCard +'/voters/' + idKudo + '/'+ this.userEmail).remove();
