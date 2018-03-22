@@ -164,15 +164,13 @@
             card.color      = block.color;
             card.totalRating =0;
             card.usersRating =0;
-            if (block.cards[idCard].numVotes){
-              //card.usersRating =block.cards[idCard].statRating.users;
-              card.totalRating =block.cards[idCard].numVotes || 0;
-              card.usersRating =block.cards[idCard].numVotes;
-              card.averageRating=0;
-              if (card.usersRating > 0 ){
-                card.averageRating=Number(card.totalRating) / Number(card.usersRating);
-              }
+            
+            var vote = block.cards[idCard].voters.approve;
+            var contador=0;
+            for (var prop in vote) {
+              contador++;
             }
+            card.totalRating=contador;
             self.push('tmpCards', card);
             self.push('cards', card);
           }
