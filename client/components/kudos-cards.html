@@ -243,7 +243,7 @@
             voto = -1;
           }
           var refControl = firebase.database().ref(this.activeEvent +'/users').child(this.userEmail+"/kudos");
-          var refCard=firebase.database().ref(this.activeEvent +'/blocks/cards/'+  idBlock + '/cards/' + idCard +'/voters');
+          var refCard=firebase.database().ref(this.activeEvent +'/blocks/'+  idBlock + '/cards/' + idCard +'/voters');
           if(voto > 0) {
             var updates = {};
             var updatesVotersbyKudo ={};
@@ -260,12 +260,12 @@
                 if (_idTmpCard!=idCard){
                   this.$$('#id_' + _idTmpCard + '_' +idKudo ).active=false;
                   firebase.database().ref(this.activeEvent +'/users').child(this.userEmail).child("/kudos/"+idBlock).child(_idTmpCard).child(idKudo).remove();
-                  firebase.database().ref(this.activeEvent +'/users').child(this.activeEvent +'/blocks/cards/'+  idBlock + '/cards/' + idCard +'/voters/' + idKudo + '/'+ this.userEmail).remove();
+                  firebase.database().ref(this.activeEvent + '/blocks/' + idBlock + '/cards/'+ idCard +'/voters/' + idKudo + '/'+ this.userEmail).remove();
                 }
             }
           } else {
             firebase.database().ref(this.activeEvent +'/users').child(this.userEmail).child("/kudos/"+idBlock).child(idCard).child(idKudo).remove();
-            firebase.database().ref(this.activeEvent +'/users').child(this.activeEvent +'/blocks/cards/'+  idBlock + '/cards/' + idCard +'/voters/' + idKudo + '/'+ this.userEmail).remove();
+            firebase.database().ref(this.activeEvent + '/blocks/' + idBlock + '/cards/'+ idCard +'/voters/' + idKudo + '/'+ this.userEmail).remove();
           }
         },
         _putStars:function(e) {
