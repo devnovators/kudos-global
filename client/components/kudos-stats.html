@@ -159,12 +159,13 @@
             self.push('tmpCards', card);
             self.push('cards', card);
           }
-          if(child.val=='PGM001'){
+          console.info(child.key);
+          if(child.key=='PGM001'){
             self.sortedCards1 = self.tmpCards;
             self.sortedCards1.sort(function(a,b) {
             return (a.totalRating > b.totalRating) ? -1 : ((b.totalRating > a.totalRating) ? 1 : 0);} );
             self.tmpCards = [];
-          }else if(child.val=='PGM002'){
+          }else if(child.key=='PGM002'){
             self.sortedCards2 = self.tmpCards;
             self.sortedCards2.sort(function(a,b) {
             return (a.totalRating > b.totalRating) ? -1 : ((b.totalRating > a.totalRating) ? 1 : 0);} );
