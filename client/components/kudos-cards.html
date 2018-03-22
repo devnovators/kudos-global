@@ -285,7 +285,7 @@
           ref.once("value").then(function(snapshot) {
             self.$.comments.value="";
             snapshot.forEach(function(child) {
-              console.info(child.key() + ": " + child.val());
+              console.info(child.key + ": " + child.val());
               var comment = child.val();
               self.$.comments.value=self.$.comments.value + "<li>" + comment + "</li>";
             });
