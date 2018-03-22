@@ -280,6 +280,8 @@
           
           var ref = firebase.database().ref(this.activeEvent + "/blocks/"+  card.block +"/cards/" + card.id + "/comments");
           var self = this;
+          console.info(self.activeEvent + "/blocks/" +  card.block + "/cards/" + card.id + "/comments");
+          
           ref.once("value").then(function(snapshot) {
             self.$.comments.value="";
             snapshot.forEach(function(child) {
