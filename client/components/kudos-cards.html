@@ -59,7 +59,7 @@
                       {{getKudosUser(card.block,card.id,kudo.id)}}
                         <!--<paper-button class$="kudo [[kudo.id]]" toggles  id="id_{{card.id}}_{{kudo.id}}" on-click="_assess" data='{{card}}'>-->
                         <!--<div class="div_button" id="id_{{card.id}}_{{kudo.id}}" on-click="_assess" data='{{card}}'>-->
-                          <div class="cup_disable" id="id_img_{{card.id}}_{{kudo.id}}" on-click="_assess" data='{{card}}'>&nbsp;Winner</div>
+                          <div class="cup_disable" id="id_img_{{card.id}}_{{kudo.id}}" on-click="_assess" data='{{card}}'>&nbsp;</div>
                         <!-- </div>                        -->
                         <!--<iron-icon icon="{{kudo.icon}}"></iron-icon> -->
                       </paper-button>
@@ -255,6 +255,7 @@
           var refCard=firebase.database().ref(this.activeEvent +'/blocks/'+  idBlock + '/cards/' + idCard +'/voters');
           //if(idBtnKudo && (idBtnKudo.active || idBtnKudo.active == 'true' || idBtnKudo.active === true)) {
           if(idBtnKudo.classList.toggle('cup_enable')) {
+            idBtnKudo.classList.remove("cup_disable");
             var updates = {};
             var updatesVotersbyKudo ={};
             updates["/" + idBlock + "/" + idCard + "/" + idKudo] = true;
@@ -275,6 +276,7 @@
             }
           } else {
             alert('no entro aqui');
+            idBtnKudo.classList.toggle('cup_disable')
             firebase.database().ref(this.activeEvent +'/users').child(this.userEmail).child("/kudos/"+idBlock).child(idCard).child(idKudo).remove();
             firebase.database().ref(this.activeEvent + '/blocks/' + idBlock + '/cards/'+ idCard +'/voters/' + idKudo + '/'+ this.userEmail).remove();
           }
