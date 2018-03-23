@@ -240,8 +240,9 @@
           var idKudo = 'approve';
           var idCard  = _card.id;
           var idBlock = _card.block;
+          alert('entre => ' + '#id_' + idCard +'_' +idKudo);
           var idBtnKudo=this.$$('#id_' +idCard +'_' +idKudo);
-          alert('entre => ' + kudoSeleccionado.id);
+          
           
           var refControl = firebase.database().ref(this.activeEvent +'/users').child(this.userEmail+"/kudos");
           var refCard=firebase.database().ref(this.activeEvent +'/blocks/'+  idBlock + '/cards/' + idCard +'/voters');
