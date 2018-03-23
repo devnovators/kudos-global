@@ -271,6 +271,7 @@
                 var _idTmpCard=idBlock+'FT' + _idTmp.slice(_idTmp.length-3, _idTmp.length)
                 if (_idTmpCard!=idCard && this.$$('#id_img_' + _idTmpCard + '_' +idKudo )){
                   this.$$('#id_img_' + _idTmpCard +'_' +idKudo).classList.remove("cup_enable");
+                  this.$$('#id_img_' + _idTmpCard +'_' +idKudo).classList.add("cup_disable");
                   firebase.database().ref(this.activeEvent +'/users').child(this.userEmail).child("/kudos/"+idBlock).child(_idTmpCard).child(idKudo).remove();
                   firebase.database().ref(this.activeEvent + '/blocks/' + idBlock + '/cards/'+ _idTmpCard +'/voters/' + idKudo + '/'+ this.userEmail).remove();
                 }
