@@ -205,7 +205,7 @@
       if (comments!=undefined){
         this.arrComments=[];
         for (var comment in comments) {
-          var _objComment;
+          var _objComment={};
           _objComment.message=comments[comment].message;
           _objComment.user=comment;
           this.push("arrComments",_objComment);
