@@ -219,7 +219,8 @@
           ref.once('value').then(function(snapshot) {
             if(snapshot.val()!=null){
               if(snapshot.val()==true){
-                self.$$('#id_img_' +idCard +'_' +idKudo).className="cup_enable";
+                var kudo=self.$$('#id_img_' +idCard +'_' +idKudo);
+                kudo.classList.toggle('cup_enable');
               }
                 //self.$$('#id_' +idCard +'_' +idKudo).active=snapshot.val();
                 //document.getElementById("MyElement").className
@@ -253,8 +254,7 @@
           var refControl = firebase.database().ref(this.activeEvent +'/users').child(this.userEmail+"/kudos");
           var refCard=firebase.database().ref(this.activeEvent +'/blocks/'+  idBlock + '/cards/' + idCard +'/voters');
           //if(idBtnKudo && (idBtnKudo.active || idBtnKudo.active == 'true' || idBtnKudo.active === true)) {
-          if(idBtnKudo && (idBtnKudo.className=="cup_disable")) {
-            idBtnKudo.className="cup_enable";
+          if(idBtnKudo.classList.toggle('cup_enable')) {
             var updates = {};
             var updatesVotersbyKudo ={};
             updates["/" + idBlock + "/" + idCard + "/" + idKudo] = true;
@@ -275,7 +275,6 @@
             }
           } else {
             alert('no entro aqui');
-            idBtnKudo.className="cup_disable";
             firebase.database().ref(this.activeEvent +'/users').child(this.userEmail).child("/kudos/"+idBlock).child(idCard).child(idKudo).remove();
             firebase.database().ref(this.activeEvent + '/blocks/' + idBlock + '/cards/'+ idCard +'/voters/' + idKudo + '/'+ this.userEmail).remove();
           }
