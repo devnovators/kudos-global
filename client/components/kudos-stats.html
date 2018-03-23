@@ -117,7 +117,7 @@
                 <div id="fb_{{card.id}}">
                   <ul>
                   <template is="dom-repeat" items="{{_getComments(card.comments)}}" as="comment">
-                    <li>{{comment}}</li>
+                    <li><b>{{comment.user}}:</b> {{comment.message}}</li>
                   </template>
                   </ul>
                 </div>
