@@ -233,7 +233,7 @@
           });
         },
         _assess:function(e) {
-          alert('entre');
+          
           //var kudoSeleccionado = e.model['__data__'];
           var kudoSeleccionado = Polymer.dom(e).localTarget;
           var _card = kudoSeleccionado.data;
@@ -241,6 +241,7 @@
           var idCard  = _card.id;
           var idBlock = _card.block;
           var idBtnKudo=this.$$('#id_' +idCard +'_' +idKudo);
+          alert('entre => ' + kudoSeleccionado.id);
           
           var refControl = firebase.database().ref(this.activeEvent +'/users').child(this.userEmail+"/kudos");
           var refCard=firebase.database().ref(this.activeEvent +'/blocks/'+  idBlock + '/cards/' + idCard +'/voters');
