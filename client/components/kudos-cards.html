@@ -59,7 +59,10 @@
                       {{getKudosUser(card.block,card.id,kudo.id)}}
                         <!--<paper-button class$="kudo [[kudo.id]]" toggles  id="id_{{card.id}}_{{kudo.id}}" on-click="_assess" data='{{card}}'>-->
                         <!--<div class="div_button" id="id_{{card.id}}_{{kudo.id}}" on-click="_assess" data='{{card}}'>-->
+                        <div style="text-align: center;">
                           <div class="cup_disable" id="id_img_{{card.id}}_{{kudo.id}}" on-click="_assess" data='{{card}}'>&nbsp;</div>
+                        </div>
+                          
                         <!-- </div>                        -->
                         <!--<iron-icon icon="{{kudo.icon}}"></iron-icon> -->
                       </paper-button>
@@ -247,7 +250,6 @@
           var idKudo = 'approve';
           var idCard  = _card.id;
           var idBlock = _card.block;
-          alert('entre => ' + '#id_' + idCard +'_' +idKudo);
           var idBtnKudo=this.$$('#id_img_' +idCard +'_' +idKudo);
           
           
@@ -265,7 +267,6 @@
             
             var idIniCard='000';
             for (var index = 1; index <= 12; ++index) {
-                alert('entre > ' + index);
                 var _idTmp=idIniCard+index;
                 var _idTmpCard=idBlock+'FT' + _idTmp.slice(_idTmp.length-3, _idTmp.length)
                 if (_idTmpCard!=idCard && this.$$('#id_img_' + _idTmpCard + '_' +idKudo )){
@@ -275,8 +276,7 @@
                 }
             }
           } else {
-            alert('no entro aqui');
-            idBtnKudo.classList.toggle('cup_disable')
+            idBtnKudo.classList.add('cup_disable');
             firebase.database().ref(this.activeEvent +'/users').child(this.userEmail).child("/kudos/"+idBlock).child(idCard).child(idKudo).remove();
             firebase.database().ref(this.activeEvent + '/blocks/' + idBlock + '/cards/'+ idCard +'/voters/' + idKudo + '/'+ this.userEmail).remove();
           }
