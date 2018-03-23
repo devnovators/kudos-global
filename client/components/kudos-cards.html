@@ -233,6 +233,7 @@
           });
         },
         _assess:function(e) {
+          alert('entre');
           //var kudoSeleccionado = e.model['__data__'];
           var kudoSeleccionado = Polymer.dom(e).localTarget;
           var _card = kudoSeleccionado.data;
@@ -253,6 +254,7 @@
             
             var idIniCard='000';
             for (var index = 0; index <= 13; ++index) {
+                alert('entre > ' + index);
                 var _idTmp=idIniCard+index;
                 var _idTmpCard=idBlock+'FT' + _idTmp.slice(_idTmp.length-3, _idTmp.length)
                 if (_idTmpCard!=idCard && this.$$('#id_' + _idTmpCard + '_' +idKudo )){
