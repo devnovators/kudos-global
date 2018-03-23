@@ -58,9 +58,9 @@
                     <template id="tmtKudo" is="dom-repeat" items="{{kudos}}" as="kudo">
                       {{getKudosUser(card.block,card.id,kudo.id)}}
                         <!--<paper-button class$="kudo [[kudo.id]]" toggles  id="id_{{card.id}}_{{kudo.id}}" on-click="_assess" data='{{card}}'>-->
-                        <div class="div_button" id="id_{{card.id}}_{{kudo.id}}" on-click="_assess" data='{{card}}'>
+                        <!--<div class="div_button" id="id_{{card.id}}_{{kudo.id}}" on-click="_assess" data='{{card}}'>-->
                           <div class="cup_disable" id="id_img_{{card.id}}_{{kudo.id}}" on-click="_assess" data='{{card}}'>&nbsp;Winner</div>
-                        </div>                        
+                        <!-- </div>                        -->
                         <!--<iron-icon icon="{{kudo.icon}}"></iron-icon> -->
                       </paper-button>
                       <paper-tooltip for="id_{{card.id}}_{{kudo.id}}" position="top" style="max-width:100px;">{{kudo.title}}<br>{{kudo.description}}</paper-tooltip>
@@ -219,7 +219,7 @@
           ref.once('value').then(function(snapshot) {
             if(snapshot.val()!=null){
               if(snapshot.val()==true){
-                self.$$('#id_' +idCard +'_' +idKudo).className="cup_enable";
+                self.$$('#id_img_' +idCard +'_' +idKudo).className="cup_enable";
               }
                 //self.$$('#id_' +idCard +'_' +idKudo).active=snapshot.val();
                 //document.getElementById("MyElement").className
