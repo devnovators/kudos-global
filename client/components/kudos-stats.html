@@ -168,17 +168,17 @@
             var vote = block.cards[idCard]['voters'];
             var contador=0;
             for (var prop in vote) {
-              console.info(prop);
                 for (var votacion in block.cards[idCard]['voters'][prop]) {
                   contador++;    
                 }
             }
-            
+            console.info(idCard + ' - ' + contador);
             card.totalRating=contador;
+            card.usersRating=contador;
             self.push('tmpCards', card);
             self.push('cards', card);
           }
-          console.info(child.key);
+          
           if(child.key=='PGM001'){
             self.sortedCards1 = self.tmpCards;
             self.sortedCards1.sort(function(a,b) {
