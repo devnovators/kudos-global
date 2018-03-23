@@ -240,13 +240,10 @@
           var idCard  = _card.id;
           var idBlock = _card.block;
           var idBtnKudo=this.$$('#id_' +idCard +'_' +idKudo);
-          var voto = 1;
-          if (!idBtnKudo.active){ //botón inactivo
-            voto = -1;
-          }
+          
           var refControl = firebase.database().ref(this.activeEvent +'/users').child(this.userEmail+"/kudos");
           var refCard=firebase.database().ref(this.activeEvent +'/blocks/'+  idBlock + '/cards/' + idCard +'/voters');
-          if(voto > 0) {
+          if(idBtnKudo && (idBtnKudo.active || idBtnKudo.active == 'true' || idBtnKudo.active === true)) {
             var updates = {};
             var updatesVotersbyKudo ={};
             updates["/" + idBlock + "/" + idCard + "/" + idKudo] = true;
@@ -265,6 +262,7 @@
                 }
             }
           } else {
+            alert('no entro aqui');
             firebase.database().ref(this.activeEvent +'/users').child(this.userEmail).child("/kudos/"+idBlock).child(idCard).child(idKudo).remove();
             firebase.database().ref(this.activeEvent + '/blocks/' + idBlock + '/cards/'+ idCard +'/voters/' + idKudo + '/'+ this.userEmail).remove();
           }
