@@ -115,9 +115,11 @@
             <template is="dom-if" if="{{withFeedback}}">
               <div><span><b>Feedback</b></span>
                 <div id="fb_{{card.id}}">
+                  <ul>
                   <template is="dom-repeat" items="{{_getComments(card.comments)}}" as="comment">
-                  {{comment}}
+                    <li>{{comment}}</li>
                   </template>
+                  </ul>
                 </div>
               </div>
             </template>
@@ -203,7 +205,10 @@
       if (comments!=undefined){
         this.arrComments=[];
         for (var comment in comments) {
-          this.push("arrComments",comments[comment].message);
+          var _objComment;
+          _objComment.message=comments[comment].message;
+          _objComment.user=comment;
+          this.push("arrComments",_objComment);
         }
         return this.arrComments;
       }
